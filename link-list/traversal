@@ -1,0 +1,18 @@
+/*
+ * For your reference:
+ *
+ * SinglyLinkedListNode {
+ *     int data;
+ *     SinglyLinkedListNode* next;
+ * };
+ *
+ */
+void printLinkedList(SinglyLinkedListNode* head) {
+    SinglyLinkedListNode* t=head;
+    while(t->next)
+    {
+        cout<<t->data<<endl;
+        t=t->next;
+    }
+    cout<<t->data<<endl;
+}
