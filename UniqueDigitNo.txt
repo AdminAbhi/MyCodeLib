@@ -1,0 +1,19 @@
+//Function to check all digits of a given no is unique.
+
+bool isAllDiff(int n){
+    bool diff = true;
+    VI no;
+    while(n>0){
+        no.PB(n%10);
+        n /= 10;
+    }
+    fn(i,no.size()){
+        fn(j,no.size()){
+            if(i !=j && no[i]==no[j]){
+                diff = false;
+                break;
+            }
+        }
+    }
+    return diff;
+}

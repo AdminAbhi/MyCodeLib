@@ -1,0 +1,22 @@
+//Disjoint set oparations:
+//all element of "arr" should be initialised to "-1"  
+
+
+int find_p(int *arr, int e){
+    if(arr[e]<0) return e;
+    else{
+        int p = find_p(arr, arr[e]);
+        arr[e]=p;
+        return p;
+    }
+}
+bool union_xy(int *arr, int x, int y){
+    int set1 = find_p(arr,x);
+    int set2 = find_p(arr,y);
+    if(set1 == set2) return 0;
+    else {
+        arr[set1] += arr[set2];
+        arr[set2]=set1;
+        return 1;
+    }
+}

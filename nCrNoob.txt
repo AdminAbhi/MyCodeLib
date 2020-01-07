@@ -1,0 +1,25 @@
+long long nCr(int n, int r) 
+{ 
+    if(n==r)
+        return 1;
+    else
+        r = (n-r) < r ? (n-r) : r;
+    long long num=n;
+    long long den=r,x=1;
+    
+    while(r>1)
+    {
+        n--;
+        r--;
+        
+        if(n%r==0)
+            x*=n/r;
+        else
+        {
+            num *= n;
+            den *= r;        
+        }
+    }
+    
+    return  (x*num)/den;
+} 

@@ -1,0 +1,32 @@
+long long nCr(int n, int r) 
+{ 
+    if (n<r)    
+        return 0;
+    if(n==r)
+        return 1;
+    else
+        r = (n-r) < r ? (n-r) : r;
+    vector<int> num(r),den(r);
+    int i=0, r1=r;
+    while(i<r){
+        num[i]=n--;
+        den[i]=r1--;
+        i++;
+    }
+    for(int i=0; i<r; i++){
+        for(int j=0; j<r; j++){
+            int g = __gcd(num[i],den[j]);
+            if(g!=1){
+                num[i]/=g;
+                den[j]/=g;   
+            }
+        }
+    }
+    long long res=1;
+    for(int i=0; i<r; i++){
+        res *= num[i];
+        if(res>pow(10,15))
+            res %=1000000007;
+    }
+    return res%1000000007;
+} 

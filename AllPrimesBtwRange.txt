@@ -1,0 +1,30 @@
+//to Generate all prime numbers between a given range
+//....................................................
+
+
+int nextPrime(int n){
+    if (n <= 1) return 2;
+    if (n < 3) return 3;
+    for(int j=n+1; j<=INT_MAX; j++){
+        if (j % 2 == 0 || j % 3 == 0) 
+            continue; 
+        bool loop=false;
+        for (int i = 5; i * i <= j; i = i + 6){ 
+            if (j % i == 0 || j % (i + 2) == 0) {
+                loop=true;
+                break;
+            }           
+        }
+        if(loop) continue;
+        return j;
+    }
+}
+
+vector<int> allPrimeBtw(int from, int to){
+    vector<int> primes;
+    from--;
+    for(int i=nextPrime(from); i<=to; i = nextPrime(i)){
+        primes.push_back(i);
+    }
+    return primes;
+}

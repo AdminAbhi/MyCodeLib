@@ -1,0 +1,27 @@
+//Number Sysytem............
+............................
+
+
+int intOf(char c){
+    int x =c-'0';
+	if(x>9)
+	    x -= 7;
+	return x;
+}
+long long decOf(int base, string s){
+    long long dec=0;
+	FOR(j,s.length()){
+	   int x = intOf(s[s.length()-j-1]);
+	   dec += x*pow(base,j);   
+    }
+    return dec;
+}
+int minBase(string s){
+    int mb=0;
+    FOR(d,s.length()){
+	   int xx =intOf(s[s.length()-d-1]);
+	   if(mb<xx) 
+	    mb=xx+1;
+    }
+    return mb;
+}

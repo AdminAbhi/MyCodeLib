@@ -1,0 +1,9 @@
+int n10(int n)
+{
+    int ten=1;
+    for(int i=1;i<=n;i++)
+    {
+        ten=ten*10;
+    }
+    return ten;
+}
