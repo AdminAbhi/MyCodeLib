@@ -1,0 +1,14 @@
+//Insertion in BST
+
+Node * insert(Node * root, int data) {
+    if(root==NULL){
+        Node *n=new Node(data);
+        root=n;
+        return root;
+    }
+    if(root->data<data)
+        root->right = insert(root->right,data);
+    else
+        root->left = insert(root->left,data);
+    return root;
+}

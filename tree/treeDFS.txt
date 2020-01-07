@@ -1,0 +1,17 @@
+Depth First Search NON recursive :
+
+void treeDFS(Node *root){
+    stack<Node *> st;
+    while(1){
+        while(root){
+            st.push(root);
+            root = root->left;
+        }
+        if(st.empty())
+            break;
+        root = st.top();
+        st.pop();
+        cout<<root->data<<' ';
+        root = root->right;
+    } 
+}

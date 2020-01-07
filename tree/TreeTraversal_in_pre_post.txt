@@ -1,0 +1,26 @@
+Tree traversal with Recursion: 
+................................................
+
+void preOrder(Node *root) {
+    if(root){
+        cout<<root->data<<" ";
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+
+void postOrder(Node *root) {
+    if(root){
+        postOrder(root->left);
+        postOrder(root->right);
+        cout<<root->data<<" ";
+    }
+}
+
+void inOrder(Node *root) {
+    if(root){
+        postOrder(root->left);
+	cout<<root->data<<" ";
+        postOrder(root->right);
+    }
+}

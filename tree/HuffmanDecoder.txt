@@ -1,0 +1,15 @@
+//huffman Decoder:
+
+void decode_huff(node * root, string s) {
+    node* n=root;
+    for(int i=0; i<s.length(); i++){
+        if(s[i]=='0')
+            n = n->left;
+        else if(s[i]=='1')
+            n = n->right;
+        if(n->left == NULL && n->right == NULL){
+            cout<<n->data;
+            n = root;
+        }
+    }
+}
