@@ -1,0 +1,29 @@
+/*
+ * For your reference:
+ *
+ * SinglyLinkedListNode {
+ *     int data;
+ *     SinglyLinkedListNode* next;
+ * };
+ *
+ */
+SinglyLinkedListNode* removeDuplicates(SinglyLinkedListNode* head) {
+SinglyLinkedListNode *t1=head,*t2=head->next;
+
+while(t2!=NULL)
+{
+    if(t1->data==t2->data)
+    {
+        SinglyLinkedListNode *p=t2;
+        t1->next=t2->next;
+        free(p);
+        t1=head,t2=head->next;
+    }
+    else
+    {
+        t1=t2;
+        t2=t2->next;
+    }
+}
+return head;
+}
