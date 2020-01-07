@@ -1,0 +1,29 @@
+/*
+ * For your reference:
+ *
+ * SinglyLinkedListNode {
+ *     int data;
+ *     SinglyLinkedListNode* next;
+ * };
+ *
+ */
+SinglyLinkedListNode* insertNodeAtTail(SinglyLinkedListNode* head, int data) 
+{
+    SinglyLinkedListNode* t=head;
+    SinglyLinkedListNode* p = (SinglyLinkedListNode*) malloc(sizeof(SinglyLinkedListNode));
+    p->next=NULL;
+    p->data=data;
+
+    if(head==NULL)
+        head=p;
+    else
+    {
+        while(t->next!=NULL)
+        {
+            cout<<t->data<<endl;
+            t=t->next;
+        }
+        t->next=p;
+    }
+    return head;;
+}
