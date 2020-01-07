@@ -1,0 +1,24 @@
+/*
+ * For your reference:
+ *
+ * SinglyLinkedListNode {
+ *     int data;
+ *     SinglyLinkedListNode* next;
+ * };
+ *
+ */
+SinglyLinkedListNode* deleteNode(SinglyLinkedListNode* head, int position) {
+    SinglyLinkedListNode* t=head,*p;
+    int i=1;
+    if(position==0)
+        return head->next;
+    while(i<position)
+    {
+        i++;
+        t=t->next;
+    }
+    p=t->next;
+    t->next=p->next;
+    free(p);
+    return head;
+}
