@@ -1,0 +1,26 @@
+/*
+ * For your reference:
+ *
+ * SinglyLinkedListNode {
+ *     int data;
+ *     SinglyLinkedListNode* next;
+ * };
+ *
+ */
+SinglyLinkedListNode* reverse(SinglyLinkedListNode* head) {
+    SinglyLinkedListNode *t=head, *p;
+    vector<int> ll;
+    while(t!=NULL)
+    {
+        ll.push_back(t->data);
+        t=t->next;
+    }
+    t=head;
+    int n=ll.size();
+    while(t!=NULL)
+    {
+        t->data=ll[(n--)-1];
+        t=t->next;
+    }
+    return head;
+}
