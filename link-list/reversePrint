@@ -1,0 +1,34 @@
+/*
+ * For your reference:
+ *
+ * SinglyLinkedListNode {
+ *     int data;
+ *     SinglyLinkedListNode* next;
+ * };
+ *
+ */
+void reversePrint(SinglyLinkedListNode* head) {
+    SinglyLinkedListNode *t=head;
+    int n=0;;
+    while(t!=NULL)
+    {
+        n++;
+        t=t->next;
+    }
+    //cout<<"no of data = "<<n<<endl;
+    for(int j=n;j>0;j--)
+    {
+        t=head;
+        int x=1;
+        while(t!=NULL)
+        {
+            if(x==j)
+            {
+                cout<<t->data<<endl;
+                break;
+            }
+            x++;
+            t=t->next;
+        }
+    }
+}
