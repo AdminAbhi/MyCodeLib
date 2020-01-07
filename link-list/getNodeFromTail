@@ -1,0 +1,31 @@
+/*
+ * For your reference:
+ *
+ * SinglyLinkedListNode {
+ *     int data;
+ *     SinglyLinkedListNode* next;
+ * };
+ *
+ */
+int getNode(SinglyLinkedListNode* head, int positionFromTail) {
+SinglyLinkedListNode *t=head;
+int n=0;
+while(t!=NULL)
+{
+    n++;
+    t=t->next;
+}
+t=head;
+int x=1;
+while(t!=NULL)
+{
+    if(x==n-positionFromTail)
+    {
+        return t->data;
+    }
+    t=t->next;
+    x++;
+}
+//cout<<n<<endl;
+return -1;
+}
