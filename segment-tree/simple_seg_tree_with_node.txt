@@ -1,4 +1,6 @@
+//segment tree data structure with build update and delete oparations
 
+// node of segment tree
 struct node{
 	int seg, pre, suf, sum;
 };
