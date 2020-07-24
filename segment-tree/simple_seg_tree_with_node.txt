@@ -1,0 +1,70 @@
+
+struct node{
+	int seg, pre, suf, sum;
+};
+
+struct segtree{
+	vector<node> tree;
+	int size;
+	node USELESS; 
+	
+	node sig(int a){
+		node r; r.sum = a;
+		r.seg = a > 0? a: 0; 
+		r.pre = a > 0? a: 0;
+		r.suf = a > 0? a: 0;
+		return r;
+	}
+
+	node merge(node a, node b){
+		node n;
+		n.seg = max(a.suf + b.pre, max(a.seg, b.seg));
+		n.sum = a.sum + b.sum;
+		n.pre = max(a.pre, a.sum + b.pre);
+		n.suf = max(a.suf + b.sum, b.suf);
+		return n;
+	}
+
+	void build(VLL &arr, int si, int s, int e){
+		if(s == e){ tree[si] = sig(arr[s]); return;} 
+		int mid = (s + e)/2;
+		build(arr, 2*si + 1, s, mid);
+		build(arr, 2*si + 2, mid+1, e);
+		
+		tree[si] = merge(tree[2*si+1], tree[2*si+2]);
+	}
+	void build(VLL &arr){
+		size = arr.size();
+		tree.resize(4*size);
+		build(arr, 0, 0, size-1);
+		USELESS.seg = 0; 
+		USELESS.pre = 0;
+		USELESS.suf = 0;
+		USELESS.sum = 0;
+	}
+
+	void update(int si, int s, int e, int idx, int val){
+		if(s == e){ tree[si] = sig(val); return; }
+		int mid = (s+e)/2;
+		if(idx <= mid) update(si*2+1, s, mid, idx, val);
+		else update(si*2+2, mid+1, e, idx, val);
+
+		tree[si] = merge(tree[2*si+1], tree[2*si+2]);
+	}
+	void update(int idx, int val){
+		update(0, 0, size-1, idx, val);
+	}
+
+	node querry(int si, int s, int e, int l, int r){
+		if(l <= s && r >= e) return tree[si];
+		if(l > e || r < s) return USELESS;
+		int mid = (s+e)/2;
+		return merge(querry(2*si+1, s, mid, l, r), 
+					querry(2*si+2, mid+1, e, l, r));
+	}
+	node querry(int l, int r){
+		return querry(0, 0, size-1, l, r);
+	}
+};
+
+
