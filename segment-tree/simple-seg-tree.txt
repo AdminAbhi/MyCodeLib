@@ -1,0 +1,41 @@
+// segment tree data structure with build update and querry
+
+struct segtree{
+	VLL tree;
+	int size;
+	
+	void build(VLL &arr, int si, int s, int e){
+		if(s == e){ tree[si] = arr[s]; return;} 
+		int mid = (s + e)/2;
+		build(arr, 2*si + 1, s, mid);
+		build(arr, 2*si + 2, mid+1, e);
+		tree[si] = tree[2*si+1] + tree[2*si+2];
+	}
+	void build(VLL &arr){
+		size = arr.size();
+		tree.resize(4*size);
+		build(arr, 0, 0, size-1);
+	}
+
+	void update(int si, int s, int e, int idx, int val){
+		if(s == e){ tree[si] = val; return; }
+		int mid = (s+e)/2;
+		if(idx <= mid) update(si*2+1, s, mid, idx, val);
+		else update(si*2+2, mid+1, e, idx, val);
+		tree[si] = tree[2*si+1] + tree[2*si+2];
+	}
+	void update(int idx, int val){
+		update(0, 0, size-1, idx, val);
+	}
+
+	LL querry(int si, int s, int e, int l, int r){
+		if(l <= s && r >= e) return tree[si];
+		if(l > e || r < s) return 0;
+		int mid = (s+e)/2;
+		return querry(2*si+1, s, mid, l, r) + 
+				querry(2*si+2, mid+1, e, l, r);
+	}
+	LL querry(int l, int r){
+		return querry(0, 0, size-1, l, r);
+	}
+};
