@@ -1,7 +1,7 @@
 .............................................................
 Algorithm: QUICKSORT(arr, l, h) 
 if  l<h then pi <- PARTITION(A, l, h) 
-QUICKSORT(A, l, pi–1) 
+QUICKSORT(A, l, piâ€“1) 
 QUICKSORT(A, pi+1, h)
 .............................................................
 
