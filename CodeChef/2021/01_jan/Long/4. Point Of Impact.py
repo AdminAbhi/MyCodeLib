@@ -22,7 +22,13 @@
 
 T = int(input())
 for t in range(T):
-
+    N, K, x, y = map(int, input().split())
+    cor = set()
+    cor.add((1, 1)), cor.add((1, N)), cor.add((N, N)), cor.add((N, 1))
+    K %= 4
+    N -= 1
+    step = N - x
+    print(cor)
 
 
 # =============================================================================
