@@ -1,32 +1,13 @@
-long long nCr(int n, int r) 
-{ 
-    if (n<r)    
-        return 0;
-    if(n==r)
-        return 1;
-    else
-        r = (n-r) < r ? (n-r) : r;
-    vector<int> num(r),den(r);
-    int i=0, r1=r;
-    while(i<r){
-        num[i]=n--;
-        den[i]=r1--;
-        i++;
-    }
-    for(int i=0; i<r; i++){
-        for(int j=0; j<r; j++){
-            int g = __gcd(num[i],den[j]);
-            if(g!=1){
-                num[i]/=g;
-                den[j]/=g;   
+
+long long nCr(int n, int r){
+	int MOD7 = 1000000007;
+        dp.resize(n, vector<long long> (n, 0));
+        dp[0][0] = 1;
+        for(int i=1; i<n; i++){
+            for(int j=0; j<=i; j++){
+                if(j == 0 || j == i) dp[i][j] = 1;
+                else dp[i][j] = (dp[i-1][j-1] + dp[i-1][j]) % MOD7;
             }
         }
-    }
-    long long res=1;
-    for(int i=0; i<r; i++){
-        res *= num[i];
-        if(res>pow(10,15))
-            res %=1000000007;
-    }
-    return res%1000000007;
-} 
+	return dp[n][r];
+}
